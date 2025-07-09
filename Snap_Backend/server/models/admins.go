@@ -13,7 +13,7 @@ type Admin struct {
 	Email    string             `bson:"email,omitempty" json:"email" validate:"required,email"`
 	Password string             `bson:"password,omitempty" json:"password" validate:"required,min=6"`
 	Phone    string             `bson:"phone,omitempty" json:"phone" validate:"required,min=10"`
-	Age      string             `bson:"age,omitempty" json:"age" validate:"required"`
+	Age      int             `bson:"age,omitempty" json:"age" validate:"required"`
 	Location string             `bson:"location,omitempty" json:"location" validate:"required"`
 
 	AdminVerified struct {
