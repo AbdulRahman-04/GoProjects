@@ -22,7 +22,7 @@ import (
 var userCollection *mongo.Collection
 
 func UserCollect() {
-	userCollection = utils.MongoClient.Database("Snap_Backend").Collection("users")
+	userCollection = utils.MongoClient.Database("Snap_Backend_Practice").Collection("users")
 }
 
 var userKey = []byte(config.AppConfig.JWTKEY)

@@ -25,7 +25,7 @@ import (
 var adminCollection *mongo.Collection
 
 func AdminCollect() {
-	adminCollection = utils.MongoClient.Database("Snap_Backend").Collection("admin")
+	adminCollection = utils.MongoClient.Database("Snap_Backend_Practice").Collection("admin")
 }
 
 // JWT KEY AND URL
