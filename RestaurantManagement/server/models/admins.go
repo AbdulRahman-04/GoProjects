@@ -1,0 +1,27 @@
+package models
+
+import (
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+type Admin struct {
+	ID primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Role string `bson:"role" json:"role"`
+	AdminName string `bson:"adminname" json:"adminname" binding:"required"`
+	Email string  `bson:"email" json:"email" binding:"required"`
+	Password string `bson:"password" json:"password" binding:"required,min=6"`
+	Phone string `bson:"phone" json:"phone" binding:"required,min=10,numeric"`
+	Location string `bson:"location" json:"location" binding:"required,oneof=Gacchibowli Oldcity Attapur"`
+	Language string `bson:"language" json:"language" binding:"required,oneof=Hindi English Urdu Telugu"`
+	AdminVerified struct {
+		Email bool `bson:"emailVerified" json:"emailVerified"`
+	} `bson:"adminVerified" json:"adminVerified"`
+	AdminVerifyToken struct {
+		Email string `bson:"emailVerifyToken" json:"emailVerifyToken"`
+		Phone string `bson:"phoneVerifyToken" json:"phoneVerifyToken"`
+	} `bson:"adminVerifyToken" json:"adminVerifyToken"`
+	CreatedAt time.Time `bson:"created_at" json:"created_at"`
+	UpdatedAt time.Time `bson:"updated_at" json:"updated_at"`
+}
