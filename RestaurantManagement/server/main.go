@@ -1,9 +1,16 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/AbdulRahman-04/GoProjects/RestaurantManagement/server/utils"
+	"github.com/gin-gonic/gin"
+)
 
 
 func main(){
+
+	// db import 
+	utils.DBconnect()
+
 	router := gin.Default()
 
 	router.GET("/", func (c*gin.Context){
