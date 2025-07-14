@@ -1,8 +1,15 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/utils"
+	"github.com/gin-gonic/gin"
+)
 
 func main(){
+
+	// DB import
+	utils.DBConnect()
+
 	router := gin.Default()
 
 	router.GET("/", func(c*gin.Context){
