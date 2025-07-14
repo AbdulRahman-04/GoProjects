@@ -21,6 +21,7 @@ type Restro struct {
 	} `bson:"ownerVerified" json:"ownerVerified"`
 	OwnerVerifyToken struct {
 		Email string `bson:"emailVerifyToken" json:"emailVerifyToken"`
+		Phone string `bson:"phoneVerifyToken" json:"phoneVerifyToken"`
 	} `bson:"ownerVerifyToken" json:"ownerVerifyToken"`
 	CreatedAt time.Time `bson:"created_at" json:"created_at"`
 	UpdatedAt time.Time `bson:"updated_at" json:"updated_at"`
