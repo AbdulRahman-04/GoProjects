@@ -13,7 +13,7 @@ type Event struct {
 	EventName        string `bson:"eventname" json:"eventname" binding:"required,min=5,max=30"`
 	EventtType       string `bson:"eventtype" json:"eventtype" binding:"required,oneof=Party Bar Birthday Gettogether Formal"`
 	EventAttendence  int    `bson:"attendence" json:"attendence" binding:"required,min=1"` // removed 'numeric', int already
-	EventDescription string `bson:"description" json:"description" binding:"required"`
+	EventDescription string `bson:"eventdesc" json:"eventdesc" binding:"required"`
 	ImageUrl         string `bson:"imageUrl" json:"imageUrl" binding:"required"`
 
 	IsPublic string `bson:"ispublic" json:"ispublic" binding:"required,oneof=public private"`
