@@ -16,6 +16,10 @@ type Event struct {
 	EventDescription string `bson:"description" json:"description" binding:"required"`
 	ImageUrl         string `bson:"imageUrl" json:"imageUrl" binding:"required"`
 
+	IsPublic string `bson:"ispublic" json:"ispublic" binding:"required,oneof=public private"`
+	Status string `bson:"status" json:"status" binding:"required,oneof=Upcoming Cancelled Completed"`
+	Location string `bson:"location" json:"location" binding:"required,min=15,max=100"`
+
 	CreatedAt        time.Time `bson:"created_at" json:"created_at"`
 	UpdatedAt        time.Time `bson:"updated_at" json:"updated_at"`
 }
