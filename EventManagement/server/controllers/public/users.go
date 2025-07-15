@@ -198,7 +198,7 @@ func UserSignIn(c *gin.Context) {
 		return
 	}
 	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"id":    user.ID,
+		"id":    user.ID.Hex(),
 		"role":  user.Role,
 		"email": user.Email,
 		"Exp":   time.Now().Add(5 * time.Hour).Unix(),

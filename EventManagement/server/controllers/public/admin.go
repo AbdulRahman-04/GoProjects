@@ -272,7 +272,7 @@ func AdminSignIn(c *gin.Context) {
 
 	// token generation
 	token, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"id":    admin.ID,
+		"id":    admin.ID.Hex(),
 		"role":  admin.Role,
 		"email": admin.Email,
 		"exp":   time.Now().Add(5 * time.Hour).Unix(),
