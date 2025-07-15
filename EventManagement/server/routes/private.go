@@ -14,20 +14,20 @@ func PrivateRoutes(r*gin.Engine){
 	 
 	{
 		// events routes 
-		privateGroup.POST("/events/create", middleware.OnlyUsers(), private.CreateEvent)
-		privateGroup.GET("/getallevents", middleware.OnlyUsers() ,private.GetAllEvents)
-		privateGroup.GET("/getoneevent/:id", middleware.OnlyUsers(),private.GetOneEvent)
-		privateGroup.PUT("/updateevent/:id",  middleware.OnlyUsers(),private.EditEventApi)
-		privateGroup.DELETE("/deleteoneevent/:id",  middleware.OnlyUsers(),private.DeleteOneEvent)
-		privateGroup.DELETE("/deleteallevents", middleware.OnlyUsers(), private.DeleteAllEvents)
+		privateGroup.POST("/events/create", middleware.OnlyUsers(), middleware.RateLimitMiddleware(5),private.CreateEvent)
+		privateGroup.GET("/getallevents", middleware.OnlyUsers(), middleware.RateLimitMiddleware(10),private.GetAllEvents)
+		privateGroup.GET("/getoneevent/:id", middleware.OnlyUsers(), middleware.RateLimitMiddleware(10),private.GetOneEvent)
+		privateGroup.PUT("/updateevent/:id",  middleware.OnlyUsers(), middleware.RateLimitMiddleware(5),private.EditEventApi)
+		privateGroup.DELETE("/deleteoneevent/:id",  middleware.OnlyUsers(), middleware.RateLimitMiddleware(5),private.DeleteOneEvent)
+		privateGroup.DELETE("/deleteallevents", middleware.OnlyUsers(), middleware.RateLimitMiddleware(1),private.DeleteAllEvents)
 
 		// function routes 
-		privateGroup.POST("/func/create", middleware.OnlyUsers(), private.CreateFunction)
-		privateGroup.GET("/getallfunc", middleware.OnlyUsers(), private.GetAllFunctions)
-		privateGroup.GET("/getonefunc/:id", middleware.OnlyUsers(), private.GetOneFunction)
-		privateGroup.PUT("/updatefunc/:id", middleware.OnlyUsers(), private.EditFunction)
-		privateGroup.DELETE("/deleteonefunc/:id", middleware.OnlyUsers(), private.DeleteOneFunction)
-		privateGroup.DELETE("/deleteallfuncs", middleware.OnlyUsers(), private.DeleteAllFunctions)
+		privateGroup.POST("/func/create", middleware.OnlyUsers(),  middleware.RateLimitMiddleware(5),private.CreateFunction)
+		privateGroup.GET("/getallfunc", middleware.OnlyUsers(), middleware.RateLimitMiddleware(10),private.GetAllFunctions)
+		privateGroup.GET("/getonefunc/:id", middleware.OnlyUsers(), middleware.RateLimitMiddleware(10),private.GetOneFunction)
+		privateGroup.PUT("/updatefunc/:id", middleware.OnlyUsers(), middleware.RateLimitMiddleware(5),private.EditFunction)
+		privateGroup.DELETE("/deleteonefunc/:id", middleware.OnlyUsers(), middleware.RateLimitMiddleware(5),private.DeleteOneFunction)
+		privateGroup.DELETE("/deleteallfuncs", middleware.OnlyUsers(), middleware.RateLimitMiddleware(2),private.DeleteAllFunctions)
 
 		// Admins access routes
 		privateGroup.GET("/admins/getallevents", middleware.OnlyAdmins(), private.GetAllEventsAdmin)
