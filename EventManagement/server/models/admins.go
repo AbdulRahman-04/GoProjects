@@ -23,8 +23,8 @@ type Admin struct {
 	} `bson:"adminVerified" json:"adminVerified"`
 
 	AdminVerifyToken struct {
-		Email string  `bson:"emailVerified" json:"emailVerified"`
-		Phone string  `bson:"phoneVerified" json:"phoneVerified"`
+		Email string  `bson:"emailVerifyToken" json:"emailVerifyToken"`
+		Phone string  `bson:"phoneVerifyToken" json:"phoneVerifyToken"`
 	} `bson:"adminVerifyToken" json:"adminVerifyToken"`
 
 	CreatedAt time.Time  `bson:"created_at" json:"created_at"`
