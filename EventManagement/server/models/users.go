@@ -22,8 +22,8 @@ type User struct {
 	} `bson:"userverified" json:"userverified"`
 
 	Userverifytoken struct {
-		Email string  `bson:"emailVerified" json:"emailVerified"`
-		Phone string  `bson:"phoneVerified" json:"phoneVerified"`
+		Email string  `bson:"emailVerifyToken" json:"emailVerifyToken"`
+		Phone string  `bson:"phoneVerifyToken" json:"phoneVerifyToken"`
 	} `bson:"userverifytoken" json:"userverifytoken"`
 
 	Createdat time.Time  `bson:"created_at" json:"created_at"`

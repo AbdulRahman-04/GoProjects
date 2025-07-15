@@ -1,6 +1,12 @@
 package main
 
 import (
+	"fmt"
+
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/config"
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/controllers/private"
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/controllers/public"
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/routes"
 	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/utils"
 	"github.com/gin-gonic/gin"
 )
@@ -12,11 +18,24 @@ func main(){
 
 	router := gin.Default()
 
+	// function calls 
+	public.UserCollect()
+	public.AdminCollect()
+	private.UserAccessCollect()
+	private.AdminAccessCollect()
+	private.EventsCollect()
+	private.FunctionCollect()
+
 	router.GET("/", func(c*gin.Context){
 		c.JSON(200, gin.H{
 			"msg": "Hello World From Gin",
 		})
 	})
 
-	router.Run(":4040")
+
+	// routes register
+	routes.PublicRoutes(router)
+	routes.PrivateRoutes(router)
+
+	router.Run(fmt.Sprintf(":%d", config.AppConfig.Port))
 }

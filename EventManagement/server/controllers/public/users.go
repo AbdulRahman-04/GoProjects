@@ -132,9 +132,9 @@ func EmailVerifyUser(c *gin.Context) {
 	token := c.Param("token")
 
 	var user models.User
-	err := userCollection.FindOne(ctx, bson.M{"userverifytoken.emailverifytoken": token}).Decode(&user)
+	err := userCollection.FindOne(ctx, bson.M{"userverifytoken.emailVerifyToken": token}).Decode(&user)
 	if err != nil {
-		c.JSON(400, gin.H{"msg": "Db error"})
+		c.JSON(400, gin.H{"msg": "Invalid Token"})
 		return
 	}
 

@@ -56,7 +56,7 @@ func AuthMiddleware() gin.HandlerFunc{
 		}
 
 		// get userId from token 
-		userStrId, ok := claims["userId"].(string)
+		userStrId, ok := claims["id"].(string)
 		if !ok {
 			c.JSON(400, gin.H{
 				"msg": "No userId Data found in token",

@@ -44,7 +44,7 @@ func AdminSignUp(c *gin.Context) {
 
 	// type struct
 	type AdminSignUp struct {
-		AdminName string `json:"name" form:"name"`
+		AdminName string `json:"adminname" form:"name"`
 		Email     string `json:"email" form:"email"`
 		Password  string `json:"password" form:"password"`
 		Phone     string `json:"phone" form:"phone"`
@@ -142,7 +142,7 @@ func AdminSignUp(c *gin.Context) {
 			From:    "Team Ivents Plannerz🎉",
 			To:      inputAdmin.Email,
 			Subject: "Email Verification",
-			Html:    fmt.Sprintf(`<a href="%s/api/public/user/emailverify/%s">Verify email</a>`, adminUrl, emailToken),
+			Html:    fmt.Sprintf(`<a href="%s/api/public/admin/emailverify/%s">Verify email</a>`, adminUrl, emailToken),
 		}
 
 		_ = utils.SendEmail(emailData)
@@ -174,10 +174,10 @@ func EmailVerifyAdmin(c *gin.Context) {
 
 	// compare token
 	var admin models.Admin
-	err := adminCollection.FindOne(ctx, bson.M{"adminverifytoken.emailVerifyToken": token}).Decode(&admin)
+	err := adminCollection.FindOne(ctx, bson.M{"adminVerifyToken.emailVerifyToken": token}).Decode(&admin)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"msg": "Db error",
+			"msg": "invalid token",
 		})
 		return
 	}
