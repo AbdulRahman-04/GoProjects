@@ -2,11 +2,13 @@ package routes
 
 import (
 	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/controllers/public"
+	"github.com/AbdulRahman-04/GoProjects/EventManagement/server/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func PublicRoutes(r*gin.Engine){
 	publicGroup := r.Group("/api/public")
+	publicGroup.Use(middleware.RateLimitMiddleware(5))
 
 	{
 		// users public apis's

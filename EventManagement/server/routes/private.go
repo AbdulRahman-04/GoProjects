@@ -10,6 +10,7 @@ import (
 func PrivateRoutes(r*gin.Engine){
 	privateGroup := r.Group("/api/private")
     privateGroup.Use(middleware.AuthMiddleware())
+	privateGroup.Use(middleware.RateLimitMiddleware(10))
 	 
 	{
 		// events routes 
